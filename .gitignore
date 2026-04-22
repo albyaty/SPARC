@@ -1,5 +1,10 @@
 tmp/
 /assets/
+/*.avif
+/*.jpg
+/*.jpeg
+/*.png
+/*.webp
 *.pdf
 .DS_Store
 Thumbs.db
