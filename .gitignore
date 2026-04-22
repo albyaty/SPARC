@@ -1,0 +1,5 @@
+tmp/
+/assets/
+*.pdf
+.DS_Store
+Thumbs.db
