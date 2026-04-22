@@ -802,6 +802,48 @@ h3 {
   font-weight: 800;
 }
 
+.footer-credit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.footer-credit a {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.footer-credit a:hover {
+  color: #88ded4;
+}
+
+.x-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.x-link::before {
+  content: "X";
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  color: #061721;
+  background: rgba(255, 255, 255, 0.86);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.x-link:hover::before {
+  background: #88ded4;
+}
+
 .footer-links a:hover {
   color: #88ded4;
 }
@@ -944,6 +986,10 @@ h3 {
 
   .site-footer {
     display: grid;
+  }
+
+  .footer-credit {
+    justify-content: start;
   }
 }
 
