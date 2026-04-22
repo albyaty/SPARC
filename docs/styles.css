@@ -309,6 +309,7 @@ h3 {
 
 .section-copy p,
 .section-heading p,
+.projects-heading p,
 .publication-heading p,
 .event-lede,
 .symposium-copy p,
@@ -436,6 +437,100 @@ h3 {
   color: var(--ink-soft);
 }
 
+.projects-section {
+  background: var(--mist);
+}
+
+.projects-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(340px, 0.72fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.projects-heading h2 {
+  max-width: 980px;
+  font-size: clamp(2.15rem, 4.35vw, 4rem);
+  line-height: 1.02;
+}
+
+.projects-heading p {
+  max-width: 580px;
+  margin-bottom: 0;
+}
+
+.pipeline-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-bottom: 30px;
+  background: rgba(9, 33, 47, 0.16);
+}
+
+.pipeline-strip div {
+  min-height: 150px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.pipeline-strip strong {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--coral);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pipeline-strip span {
+  color: var(--ink-soft);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(9, 33, 47, 0.18);
+}
+
+.project-grid article {
+  min-height: 268px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: var(--white);
+}
+
+.project-grid article > span {
+  align-self: flex-start;
+  margin-bottom: 24px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--blue-deep);
+  background: #d7f1ef;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-grid h3 {
+  margin-bottom: 12px;
+  color: var(--blue-deep);
+}
+
+.project-grid p {
+  color: var(--ink-soft);
+}
+
+.project-grid small {
+  margin-top: auto;
+  padding-top: 18px;
+  color: rgba(9, 33, 47, 0.64);
+  font-weight: 750;
+}
+
 .event-feature {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
@@ -453,7 +548,6 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.02);
 }
 
 .event-panel {
@@ -884,7 +978,9 @@ h3 {
   }
 
   .metrics-band,
-  .database-grid {
+  .database-grid,
+  .project-grid,
+  .pipeline-strip {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -892,7 +988,8 @@ h3 {
   .event-feature,
   .symposium-layout,
   .join-section,
-  .abstract-columns {
+  .abstract-columns,
+  .projects-heading {
     grid-template-columns: 1fr;
   }
 
@@ -957,7 +1054,9 @@ h3 {
   }
 
   .metrics-band,
-  .database-grid {
+  .database-grid,
+  .project-grid,
+  .pipeline-strip {
     grid-template-columns: 1fr;
   }
 
