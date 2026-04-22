@@ -444,33 +444,39 @@ h3 {
   border-bottom: 1px solid currentColor;
 }
 
-.section-heading,
-.publication-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 28px;
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.8fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
   margin-bottom: 40px;
 }
 
 .section-heading h2,
 .publication-heading h2 {
-  max-width: 880px;
+  max-width: 760px;
+  font-size: clamp(2.2rem, 4.4vw, 4.15rem);
+  line-height: 1.02;
 }
 
 .section-heading p,
 .publication-heading p {
-  max-width: 480px;
+  max-width: 620px;
+  padding-top: 0.35rem;
 }
 
 .publication-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr) auto;
-  align-items: end;
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.82fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: 40px;
 }
 
 .publication-heading .button {
-  justify-self: end;
+  grid-column: 2;
+  justify-self: start;
+  margin-top: 22px;
   white-space: nowrap;
 }
 
@@ -601,6 +607,7 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   filter: saturate(0.85);
 }
 
@@ -731,6 +738,7 @@ h3 {
   }
 
   .publication-heading .button {
+    grid-column: auto;
     justify-self: start;
   }
 
