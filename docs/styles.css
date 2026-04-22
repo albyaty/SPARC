@@ -370,11 +370,20 @@ h3 {
 }
 
 .network-map {
-  margin: 0;
+  max-width: 1080px;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
-  background: #eef2f2;
+  padding: clamp(8px, 1vw, 14px);
+  background: #ffffff;
   box-shadow: 0 18px 60px rgba(6, 32, 43, 0.12);
+}
+
+.network-map-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #eef2f2;
 }
 
 .network-map img {
@@ -383,9 +392,8 @@ h3 {
 }
 
 .network-map figcaption {
-  padding: 14px 18px 16px;
+  padding: 12px 8px 2px;
   color: var(--ink-soft);
-  background: rgba(255, 255, 255, 0.84);
   font-size: 0.85rem;
   font-weight: 700;
 }
