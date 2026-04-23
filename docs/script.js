@@ -2,6 +2,11 @@ const header = document.querySelector("[data-header]");
 const revealItems = document.querySelectorAll(".reveal");
 const metricNumbers = document.querySelectorAll(".metric-number");
 const progressTimeline = document.querySelector("[data-timeline-progress]");
+const mapLightbox = document.querySelector("[data-map-lightbox]");
+const mapOpenButtons = document.querySelectorAll("[data-map-open]");
+const mapCloseButtons = document.querySelectorAll("[data-map-close]");
+const mapScrollArea = document.querySelector(".map-lightbox-scroll");
+let activeMapTrigger = null;
 
 const updateHeader = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 20);
@@ -27,7 +32,7 @@ revealItems.forEach((item) => revealObserver.observe(item));
 const animateNumber = (element) => {
   const target = Number(element.dataset.target || 0);
   const suffix = element.dataset.suffix || "";
-  const duration = 900;
+  const duration = Math.min(2600, Math.max(1800, target * 22));
   const start = performance.now();
 
   const tick = (now) => {
@@ -88,3 +93,33 @@ const updateTimelineProgress = () => {
 
 updateTimelineProgress();
 window.addEventListener("resize", updateTimelineProgress);
+
+const openMapLightbox = (trigger) => {
+  if (!mapLightbox) return;
+
+  activeMapTrigger = trigger;
+  mapLightbox.hidden = false;
+  document.body.classList.add("has-map-lightbox");
+  mapScrollArea?.focus({ preventScroll: true });
+};
+
+const closeMapLightbox = () => {
+  if (!mapLightbox || mapLightbox.hidden) return;
+
+  mapLightbox.hidden = true;
+  document.body.classList.remove("has-map-lightbox");
+  activeMapTrigger?.focus({ preventScroll: true });
+  activeMapTrigger = null;
+};
+
+mapOpenButtons.forEach((button) => {
+  button.addEventListener("click", () => openMapLightbox(button));
+});
+
+mapCloseButtons.forEach((button) => {
+  button.addEventListener("click", closeMapLightbox);
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMapLightbox();
+});

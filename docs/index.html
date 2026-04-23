@@ -21,7 +21,6 @@
         </span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
         <a href="#network">Network</a>
         <a href="#registry">Registry</a>
         <a href="#aua-2026">Events</a>
@@ -29,6 +28,7 @@
         <a href="#publications">Publications</a>
         <a href="#projects">Projects</a>
         <a href="#join">Join</a>
+        <a href="#about">About</a>
       </nav>
     </header>
 
@@ -41,7 +41,7 @@
           <h1 id="hero-title">Single-Port Advanced Research Consortium</h1>
           <p class="hero-copy">
             SPARC connects high-volume centers to build evidence for single-port robotic
-            surgery across prostate, kidney, bladder, upper-tract, and reconstructive urology.
+            surgery across prostate, kidney, bladder, upper-tract malignancies, and reconstructive urology.
           </p>
           <div class="hero-actions" aria-label="Primary actions">
             <a class="button primary" href="#aua-2026">View upcoming events</a>
@@ -85,12 +85,12 @@
             </p>
           </div>
           <figure class="network-map reveal delay-1">
-            <a class="network-map-link" href="assets/sparc-network-map.png" target="_blank" rel="noreferrer">
+            <button class="network-map-link" type="button" data-map-open aria-label="Open larger SPARC institution map">
               <img src="assets/sparc-network-map.png" alt="Map of participating SPARC institutions across the United States" />
-            </a>
+            </button>
             <figcaption>
               <span>Participating SPARC institutions, April 2026.</span>
-              <a href="assets/sparc-network-map.png" target="_blank" rel="noreferrer">Open full map</a>
+              <button class="network-map-open" type="button" data-map-open>Open full map</button>
             </figcaption>
           </figure>
         </div>
@@ -499,6 +499,19 @@
         </details>
       </section>
     </main>
+
+    <div class="map-lightbox" data-map-lightbox hidden role="dialog" aria-modal="true" aria-label="Participating SPARC institutions map">
+      <button class="map-lightbox-backdrop" type="button" data-map-close aria-label="Close map"></button>
+      <div class="map-lightbox-panel" role="document">
+        <div class="map-lightbox-toolbar">
+          <strong>Participating SPARC institutions, April 2026</strong>
+          <button type="button" data-map-close>Close</button>
+        </div>
+        <div class="map-lightbox-scroll" tabindex="0">
+          <img src="assets/sparc-network-map.png" alt="Map of participating SPARC institutions across the United States" />
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <strong>SPARC</strong>
