@@ -67,28 +67,31 @@ a {
 .brand-lockup {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
 }
 
 .brand-mark {
-  display: block;
-  width: 44px;
-  height: 44px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 8px;
-  background: #02080c;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  transition:
-    border-color 240ms ease,
-    box-shadow 240ms ease;
+  position: relative;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
 }
 
 .brand-mark img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  transition:
+    opacity 240ms ease,
+    transform 240ms ease;
+}
+
+.brand-mark-light {
+  opacity: 0;
+  transform: scale(0.94);
 }
 
 .brand-lockup strong,
@@ -107,9 +110,14 @@ a {
   opacity: 0.78;
 }
 
-.site-header.is-scrolled .brand-mark {
-  border-color: rgba(9, 33, 47, 0.16);
-  box-shadow: 0 10px 24px rgba(6, 32, 43, 0.14);
+.site-header.is-scrolled .brand-mark-dark {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.site-header.is-scrolled .brand-mark-light {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .site-nav {
@@ -181,7 +189,28 @@ a {
 }
 
 .hero .eyebrow {
+  margin-bottom: 8px;
   color: #88ded4;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+}
+
+.hero-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-brand img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 h1,
@@ -1635,8 +1664,20 @@ body.has-map-lightbox {
   }
 
   .hero .eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.13em;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-brand {
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-brand img {
+    width: 24px;
+    height: 24px;
   }
 
   .hero-copy {
