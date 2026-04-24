@@ -1697,7 +1697,7 @@ body.has-map-lightbox {
   .hero-media {
     background:
       linear-gradient(100deg, rgba(4, 31, 48, 0.96) 0%, rgba(4, 31, 48, 0.88) 58%, rgba(4, 31, 48, 0.64) 100%),
-      url("assets/hero-robot-upscaled.png") 34% center / cover;
+      url("assets/hero-robot-upscaled.png") 76% center / cover;
   }
 
   .hero-event {
