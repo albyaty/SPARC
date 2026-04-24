@@ -3,13 +3,20 @@
   --ink-soft: #264556;
   --blue: #005f86;
   --blue-deep: #042c44;
-  --teal: #28a69a;
-  --coral: #d5603d;
+  --teal: #7db8c8;
+  --coral: #a96549;
+  --accent-bright: #a0ccd8;
+  --accent-soft: #b8d8e1;
+  --accent-tint: #e4eef2;
   --mist: #eef6f6;
   --paper: #fbfaf7;
   --line: rgba(9, 33, 47, 0.16);
   --white: #ffffff;
   --shadow: 0 24px 70px rgba(6, 32, 43, 0.2);
+  --button-primary-bg: #a96549;
+  --button-primary-text: #ffffff;
+  --button-secondary-border: rgba(160, 204, 216, 0.58);
+  --button-secondary-bg: rgba(160, 204, 216, 0.1);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -195,7 +202,7 @@ a {
 
 .hero .eyebrow {
   margin-bottom: 8px;
-  color: #88ded4;
+  color: var(--accent-bright);
   font-size: 0.68rem;
   letter-spacing: 0.13em;
 }
@@ -235,7 +242,7 @@ h1 {
 }
 
 h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   font-size: clamp(2.25rem, 5vw, 4.8rem);
   line-height: 0.98;
   letter-spacing: 0;
@@ -249,7 +256,7 @@ h3 {
 .hero-copy {
   max-width: 650px;
   color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: clamp(0.96rem, 1.35vw, 1.12rem);
 }
 
 .hero-actions {
@@ -279,14 +286,14 @@ h3 {
 }
 
 .button.primary {
-  color: var(--white);
-  background: var(--coral);
+  color: var(--button-primary-text);
+  background: var(--button-primary-bg);
 }
 
 .button.secondary {
   color: var(--white);
-  border-color: rgba(255, 255, 255, 0.46);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--button-secondary-border);
+  background: var(--button-secondary-bg);
 }
 
 .button.secondary.dark {
@@ -304,7 +311,7 @@ h3 {
   gap: 4px;
   width: min(360px, calc(100% - 40px));
   padding: 14px 16px 14px 18px;
-  border-left: 3px solid #88ded4;
+  border-left: 3px solid var(--accent-bright);
   border-radius: 0 8px 8px 0;
   background: rgba(4, 31, 48, 0.62);
   box-shadow: 0 22px 54px rgba(4, 31, 48, 0.2);
@@ -312,7 +319,7 @@ h3 {
 }
 
 .hero-event span {
-  color: #88ded4;
+  color: var(--accent-bright);
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -687,7 +694,7 @@ body.has-map-lightbox {
   margin-top: 2px;
   border-radius: 50%;
   color: var(--blue-deep);
-  background: #8edbd4;
+  background: var(--accent-soft);
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -844,7 +851,7 @@ body.has-map-lightbox {
   padding: 6px 10px;
   border-radius: 999px;
   color: var(--blue-deep);
-  background: #d7f1ef;
+  background: var(--accent-tint);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -897,7 +904,7 @@ body.has-map-lightbox {
 }
 
 .event-panel .eyebrow {
-  color: #88ded4;
+  color: var(--accent-bright);
 }
 
 .event-lede {
@@ -922,7 +929,7 @@ body.has-map-lightbox {
 }
 
 .agenda-list time {
-  color: #88ded4;
+  color: var(--accent-bright);
   font-weight: 900;
 }
 
@@ -930,7 +937,7 @@ body.has-map-lightbox {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  color: #88ded4;
+  color: var(--accent-bright);
   font-weight: 900;
   border-bottom: 1px solid currentColor;
 }
@@ -950,7 +957,7 @@ body.has-map-lightbox {
 .event-cards time {
   display: block;
   margin-bottom: 8px;
-  color: #88ded4;
+  color: var(--accent-bright);
   font-weight: 900;
 }
 
@@ -1129,7 +1136,7 @@ body.has-map-lightbox {
 .best-kicker {
   display: block;
   margin-bottom: 14px;
-  color: #88ded4;
+  color: var(--accent-bright);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0.16em;
@@ -1174,9 +1181,9 @@ body.has-map-lightbox {
   width: 30px;
   height: 30px;
   place-items: center;
-  border: 1px solid rgba(136, 222, 212, 0.55);
+  border: 1px solid color-mix(in srgb, var(--accent-bright) 55%, transparent);
   border-radius: 999px;
-  color: #88ded4;
+  color: var(--accent-bright);
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -1412,7 +1419,7 @@ body.has-map-lightbox {
 }
 
 .join-copy .eyebrow {
-  color: #88ded4;
+  color: var(--accent-bright);
 }
 
 .join-steps {
@@ -1438,7 +1445,7 @@ body.has-map-lightbox {
   height: 34px;
   border-radius: 50%;
   color: var(--blue-deep);
-  background: #88ded4;
+  background: var(--accent-bright);
   font-weight: 900;
 }
 
@@ -1491,7 +1498,7 @@ body.has-map-lightbox {
 }
 
 .footer-credit a:hover {
-  color: #88ded4;
+  color: var(--accent-bright);
 }
 
 .x-link {
@@ -1515,11 +1522,11 @@ body.has-map-lightbox {
 }
 
 .x-link:hover::before {
-  background: #88ded4;
+  background: var(--accent-bright);
 }
 
 .footer-links a:hover {
-  color: #88ded4;
+  color: var(--accent-bright);
 }
 
 .reveal {
