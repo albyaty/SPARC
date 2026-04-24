@@ -67,15 +67,15 @@ a {
 .brand-lockup {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
 }
 
 .brand-mark {
   position: relative;
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+  width: 46px;
+  height: 46px;
 }
 
 .brand-mark img {
@@ -100,14 +100,17 @@ a {
 }
 
 .brand-lockup strong {
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  font-size: 1.08rem;
+  letter-spacing: 0.07em;
 }
 
 .brand-lockup small {
   max-width: 250px;
-  font-size: 0.72rem;
-  opacity: 0.78;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: 0.66rem;
+  font-style: italic;
+  letter-spacing: 0.015em;
+  opacity: 0.76;
 }
 
 .site-header.is-scrolled .brand-mark-dark {
@@ -198,18 +201,18 @@ a {
 .hero-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin: 0 0 18px;
+  gap: 14px;
+  margin: 0 0 24px;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.94rem;
+  font-size: 1.28rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
 }
 
 .hero-brand img {
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
 }
 
@@ -222,10 +225,10 @@ p {
 
 h1 {
   max-width: 760px;
-  margin-bottom: 22px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 7.2vw, 6.9rem);
-  line-height: 0.94;
+  margin-bottom: 16px;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(2.6rem, 6vw, 5.65rem);
+  line-height: 0.96;
   letter-spacing: 0;
 }
 
@@ -1459,7 +1462,7 @@ body.has-map-lightbox {
 }
 
 .footer-brand img {
-  width: clamp(72px, 6vw, 104px);
+  width: clamp(88px, 7vw, 124px);
   height: auto;
 }
 
@@ -1647,6 +1650,11 @@ body.has-map-lightbox {
     min-height: 66px;
   }
 
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
   .brand-lockup small {
     display: none;
   }
@@ -1669,15 +1677,15 @@ body.has-map-lightbox {
   }
 
   .hero-brand {
-    gap: 8px;
-    margin-bottom: 14px;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
   }
 
   .hero-brand img {
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
   }
 
   .hero-copy {
