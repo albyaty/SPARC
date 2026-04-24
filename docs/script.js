@@ -6,6 +6,8 @@ const mapLightbox = document.querySelector("[data-map-lightbox]");
 const mapOpenButtons = document.querySelectorAll("[data-map-open]");
 const mapCloseButtons = document.querySelectorAll("[data-map-close]");
 const mapScrollArea = document.querySelector(".map-lightbox-scroll");
+const abstractTabs = Array.from(document.querySelectorAll("[data-abstract-tab]"));
+const abstractPanels = Array.from(document.querySelectorAll("[data-abstract-panel]"));
 let activeMapTrigger = null;
 
 const updateHeader = () => {
@@ -123,3 +125,61 @@ mapCloseButtons.forEach((button) => {
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeMapLightbox();
 });
+
+if (abstractTabs.length && abstractPanels.length) {
+  const setActiveAbstractDay = (day) => {
+    abstractTabs.forEach((tab) => {
+      const isActive = tab.dataset.abstractTab === day;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+    });
+
+    abstractPanels.forEach((panel) => {
+      const isActive = panel.dataset.abstractPanel === day;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  };
+
+  const focusTabByOffset = (currentIndex, offset) => {
+    const nextIndex = (currentIndex + offset + abstractTabs.length) % abstractTabs.length;
+    abstractTabs[nextIndex].focus();
+    setActiveAbstractDay(abstractTabs[nextIndex].dataset.abstractTab);
+  };
+
+  abstractTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      setActiveAbstractDay(tab.dataset.abstractTab);
+    });
+
+    tab.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        focusTabByOffset(index, 1);
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        focusTabByOffset(index, -1);
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        abstractTabs[0].focus();
+        setActiveAbstractDay(abstractTabs[0].dataset.abstractTab);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        abstractTabs[abstractTabs.length - 1].focus();
+        setActiveAbstractDay(abstractTabs[abstractTabs.length - 1].dataset.abstractTab);
+      }
+    });
+  });
+
+  setActiveAbstractDay(
+    abstractTabs.find((tab) => tab.getAttribute("aria-selected") === "true")?.dataset.abstractTab ||
+      abstractTabs[0].dataset.abstractTab
+  );
+}
