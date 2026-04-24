@@ -8,14 +8,18 @@
       content="Single-Port Advanced Research Consortium (SPARC), a multi-institutional urology registry advancing single-port robotic surgery research."
     />
     <title>SPARC | Single-Port Advanced Research Consortium</title>
-    <link rel="preload" href="assets/registry-single-port.png" as="image" />
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preload" href="assets/hero-robot-upscaled.png" as="image" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header" data-header>
       <a class="brand-lockup" href="#top" aria-label="SPARC home">
-        <span class="brand-mark">SP</span>
-        <span>
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/sparc-mark.png" alt="" />
+        </span>
+        <span class="brand-text">
           <strong>SPARC</strong>
           <small>Single-Port Advanced Research Consortium</small>
         </span>
@@ -36,7 +40,7 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" aria-hidden="true"></div>
         <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content reveal">
+        <div class="hero-content">
           <p class="eyebrow">Multi-Institutional Registry on Single Port Robotic Surgery</p>
           <h1 id="hero-title">Single-Port Advanced Research Consortium</h1>
           <p class="hero-copy">
@@ -48,7 +52,7 @@
             <a class="button secondary" href="#network">View network</a>
           </div>
         </div>
-        <div class="hero-event reveal delay-2" aria-label="Upcoming event">
+        <div class="hero-event" aria-label="Upcoming event">
           <span>Upcoming</span>
           <strong>SPARC Meeting at AUA 2026</strong>
           <small>Sunday, May 17 | 7:00-9:30 PM | Washington, DC</small>
@@ -514,7 +518,9 @@
     </div>
 
     <footer class="site-footer">
-      <strong>SPARC</strong>
+      <a class="footer-brand" href="#top" aria-label="SPARC home">
+        <img src="assets/sparc-logo-dark.png" alt="SPARC" />
+      </a>
       <div class="footer-credit">
         <span>Abdulrahman Al-Bayati, MD</span>
         <a href="mailto:ala22@ccf.org">ala22@ccf.org</a>

@@ -72,14 +72,23 @@ a {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid currentColor;
+  display: block;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 8px;
-  font-weight: 800;
-  letter-spacing: 0;
+  background: #02080c;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  transition:
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-lockup strong,
@@ -96,6 +105,11 @@ a {
   max-width: 250px;
   font-size: 0.72rem;
   opacity: 0.78;
+}
+
+.site-header.is-scrolled .brand-mark {
+  border-color: rgba(9, 33, 47, 0.16);
+  box-shadow: 0 10px 24px rgba(6, 32, 43, 0.14);
 }
 
 .site-nav {
@@ -132,20 +146,28 @@ a {
 
 .hero-media {
   background:
-    linear-gradient(100deg, rgba(4, 31, 48, 0.92) 0%, rgba(4, 31, 48, 0.72) 42%, rgba(4, 31, 48, 0.42) 78%),
-    url("assets/registry-single-port.png") 58% center / cover;
+    linear-gradient(100deg, rgba(4, 31, 48, 0.95) 0%, rgba(4, 31, 48, 0.82) 40%, rgba(4, 31, 48, 0.34) 72%, rgba(4, 31, 48, 0.08) 100%),
+    url("assets/hero-robot-upscaled.png") 58% center / cover;
   transform: scale(1.04);
   animation: hero-drift 16s ease-out forwards;
 }
 
 .hero-shade {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(4, 31, 48, 0.42));
+  background:
+    radial-gradient(circle at 72% 44%, rgba(136, 222, 212, 0.22), transparent 30%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(4, 31, 48, 0.5));
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
+  width: min(760px, 100%);
   max-width: 760px;
+  min-width: 0;
+}
+
+.hero-content > * {
+  overflow-wrap: break-word;
 }
 
 .eyebrow,
@@ -247,8 +269,12 @@ h3 {
   display: grid;
   gap: 4px;
   width: min(360px, calc(100% - 40px));
-  padding-left: 18px;
+  padding: 14px 16px 14px 18px;
   border-left: 3px solid #88ded4;
+  border-radius: 0 8px 8px 0;
+  background: rgba(4, 31, 48, 0.62);
+  box-shadow: 0 22px 54px rgba(4, 31, 48, 0.2);
+  backdrop-filter: blur(14px);
 }
 
 .hero-event span {
@@ -1397,8 +1423,15 @@ body.has-map-lightbox {
   background: #061721;
 }
 
-.site-footer strong {
-  color: var(--white);
+.footer-brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-brand img {
+  width: clamp(72px, 6vw, 104px);
+  height: auto;
 }
 
 .footer-links {
@@ -1591,12 +1624,38 @@ body.has-map-lightbox {
 
   .hero {
     min-height: 92svh;
-    padding: 104px 20px 136px;
+    align-content: end;
+    gap: 12px;
+    padding: 104px 20px 32px;
+  }
+
+  .hero-content {
+    width: min(320px, calc(100vw - 70px));
+    max-width: 320px;
+  }
+
+  .hero .eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-media {
+    background:
+      linear-gradient(100deg, rgba(4, 31, 48, 0.96) 0%, rgba(4, 31, 48, 0.88) 58%, rgba(4, 31, 48, 0.64) 100%),
+      url("assets/hero-robot-upscaled.png") 34% center / cover;
   }
 
   .hero-event {
-    right: 20px;
-    bottom: 24px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: min(320px, calc(100vw - 70px));
+    max-width: 320px;
   }
 
   .hero-actions {
