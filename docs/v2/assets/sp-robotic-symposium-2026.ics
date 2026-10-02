@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SPARC//Single Port Robotic Symposium//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:sp-robotic-symposium-2026@sparc
+DTSTAMP:20261002T120000Z
+DTSTART;VALUE=DATE:20261023
+DTEND;VALUE=DATE:20261025
+SUMMARY:Single Port Robotic Symposium 2026 (Cleveland Clinic)
+LOCATION:InterContinental Hotel Cleveland Clinic\, Cleveland\, OH
+DESCRIPTION:Fri Oct 23: didactic program\, Amphitheater B\, InterContinental
+  Hotel Cleveland Clinic (breakfast 6:30 AM). Sat Oct 24: hands-on cadaver
+  lab\, L1-300\, Cleveland Clinic Simulation & Advanced Skills Center
+  (breakfast 7:00 AM). RSVP required: https://tinyurl.com/kvr8btbm
+URL:https://tinyurl.com/kvr8btbm
+END:VEVENT
+END:VCALENDAR
