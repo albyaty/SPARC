@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Network · SPARC</title>
+    <meta name="description" content="Interactive map of SPARC participating institutions and how to bring your center into the Single Port Advanced Research Consortium." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#070b11" />
+    <meta property="og:title" content="Network · SPARC" />
+    <meta property="og:description" content="Interactive map of SPARC participating institutions and how to bring your center into the Single Port Advanced Research Consortium." />
+    <link rel="icon" href="assets/img/favicon-64.png" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="preload" href="assets/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/v3.css" />
+    <script defer src="assets/js/data.js"></script>
+    <script defer src="assets/js/map-dots.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="hdr">
+      <div class="wrap">
+        <a class="brand" href="index.html" aria-label="SPARC home">
+          <img src="assets/img/sparc-logo-white.png" alt="" width="36" height="36" />
+          <div><b>SPARC</b><span>Single Port Advanced Research Consortium</span></div>
+        </a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+        </button>
+        <nav class="nav" id="nav" aria-label="Primary">
+          <a href="research.html">Research</a>
+          <a href="network.html" aria-current="page">Network</a>
+          <a href="aua-meeting.html">AUA Meeting</a>
+          <a href="symposium.html">SP Symposium</a>
+          <a class="btn btn-sm" href="network.html#join">Join SPARC</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="net" aria-labelledby="page-h">
+        <div class="net-map">
+          <div class="net-title">
+            <span class="label">Network</span>
+            <h1 id="page-h">The largest single&#8209;port collaboration <em>in the world.</em></h1>
+          </div>
+          <div class="dotmap" data-dotmap data-list="#site-list"></div>
+          <div class="net-legend mono">
+            <span><i class="h"></i>Coordinating center · data host</span>
+            <span><i></i>Participating institution</span>
+            <span><i class="f"></i>Data flowing to the registry</span>
+          </div>
+        </div>
+        <aside class="net-side" aria-label="Participating institutions">
+          <div class="top">
+            <div class="counts">
+              <div><b data-count="30" data-suffix="+">30+</b><span class="mono">Institutions</span></div>
+              <div><b data-count="4500" data-suffix="+">4,500+</b><span class="mono">Patients</span></div>
+            </div>
+            <div class="rfilters" data-regions role="group" aria-label="Filter by region"></div>
+          </div>
+          <ul class="sites" id="site-list" data-sites></ul>
+        </aside>
+      </section>
+
+      <section class="sec light" id="join" aria-labelledby="join-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <span class="label">Join SPARC</span>
+              <h2 id="join-h">Three steps to contribute.</h2>
+            </div>
+            <p>Any institution performing single-port robotic urologic surgery is welcome. Once enrolled, your center's cases are included in consortium analyses and your team can lead projects of its own.</p>
+          </div>
+          <div class="grid-3">
+            <article class="card"><span class="num">01</span><h3>Active IRB at your home institution</h3><p>Approval to contribute de-identified single-port outcomes to the SPARC registry.</p></article>
+            <article class="card"><span class="num">02</span><h3>Data use agreement with the host</h3><p>A fully executed and signed DUA with Cleveland Clinic, the SPARC data host.</p></article>
+            <article class="card"><span class="num">03</span><h3>Prospective data on REDCap</h3><p>Ongoing case entry and follow-up on the shared registry; then propose and lead projects.</p></article>
+          </div>
+          <div class="row mt-2">
+            <a class="btn" href="mailto:soputrn@ccf.org?subject=SPARC%20membership%20inquiry">Contact the coordinating team</a>
+            <span class="muted">Nicolas A. Soputro, MD · soputrn@ccf.org</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" aria-labelledby="center-h">
+        <div class="wrap two-col" style="align-items: center">
+          <figure class="rv" style="margin: 0; overflow: hidden; border-radius: 24px; aspect-ratio: 4 / 3">
+            <img src="assets/img/cleveland-clinic-campus.jpg" alt="Glickman Tower on Cleveland Clinic's main campus" width="1536" height="1024" loading="lazy" style="width: 100%; height: 100%; object-fit: cover" />
+          </figure>
+          <div class="rv d1">
+            <span class="label">Coordinating center</span>
+            <h2 id="center-h" class="h2">Cleveland Clinic, <em>since 2018.</em></h2>
+            <p class="mt-2 fg-2">
+              SPARC was founded in 2018 by Jihad Kaouk, MD, Professor &amp; Chair of the Glickman Urological Institute
+              and Director of the Center for Robotic &amp; Image-Guided Surgery. The institute hosts the registry,
+              coordinates projects across sites, and publishes SPARC News, the consortium newsletter.
+            </p>
+            <div class="row mt-2">
+              <a class="btn" href="research.html">See the research</a>
+              <a class="btn btn-line" href="symposium.html">Visit the symposium</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div>
+            <a class="brand" href="index.html" aria-label="SPARC home">
+              <img src="assets/img/sparc-logo-white.png" alt="" width="36" height="36" />
+              <div><b>SPARC</b><span>Single Port Advanced Research Consortium</span></div>
+            </a>
+            <p class="mt-1">
+              A multi-institutional registry building the evidence for single-port robotic surgery in urology.
+              Coordinated at Cleveland Clinic since 2018.
+            </p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="research.html">Research</a></li>
+              <li><a href="research.html#publications">Publications</a></li>
+              <li><a href="network.html">Network</a></li>
+              <li><a href="network.html#join">Join SPARC</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Meetings</h4>
+            <ul>
+              <li><a href="aua-meeting.html">SPARC at the AUA</a></li>
+              <li><a href="symposium.html">SP Robotic Symposium</a></li>
+              <li><a href="symposium.html#program">Symposium program</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="mailto:soputrn@ccf.org">soputrn@ccf.org</a></li>
+              <li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=%22Single-Port+Advanced+Research+Consortium%22+OR+%22Single+Port+Advanced+Research+Consortium%22" target="_blank" rel="noopener">SPARC on PubMed</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="wordmark" aria-hidden="true">SPARC</div>
+      <div class="wrap foot-bottom">
+        <span>© <span data-year>2026</span> Single Port Advanced Research Consortium</span>
+        <span>Site by Abdulrahman Al-Bayati, MD · <a href="mailto:ala22@ccf.org">ala22@ccf.org</a> · <a href="https://x.com/elbyaty" target="_blank" rel="noopener">@elbyaty</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
