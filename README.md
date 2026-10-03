@@ -2,7 +2,7 @@
 
 Website for the Single-Port Advanced Research Consortium (SPARC).
 
-The repository currently holds two versions side by side so they can be compared:
+The repository currently holds three versions side by side so they can be compared:
 
 | Version | Folder | Pages URL (if GitHub Pages serves `/docs`) |
 | --- | --- | --- |
