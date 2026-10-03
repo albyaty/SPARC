@@ -616,7 +616,7 @@
         const H = 560;
         const cx = 600;
         const cy = 280;
-        inputs.concat(["+ more centers across the U.S."]).forEach((name, i) => {
+        inputs.concat(["+ other participating centers"]).forEach((name, i) => {
           const y = 48 + i * 58;
           const more = i === inputs.length;
           const d = `M318 ${y} C 430 ${y}, 440 ${cy}, ${cx - 112} ${cy}`;
@@ -646,7 +646,7 @@
           out += `<text class="in-label" x="${x}" y="${y}" text-anchor="middle" style="font-size:14px">${esc(short)}</text>`;
           out += `<path class="wire" d="${d}"/><path class="flow" d="${d}" style="animation-delay:${-i * 0.37}s"/>`;
         });
-        out += `<text class="in-more" x="${cx}" y="222" text-anchor="middle">+ MORE CENTERS</text>`;
+        out += `<text class="in-more" x="${cx}" y="222" text-anchor="middle">+ OTHER CENTERS</text>`;
         const d2 = `M${cx} ${cy + 112} L ${cx} 860`;
         out += `<path class="wire" d="${d2}"/><path class="flow" d="${d2}"/>`;
         outputs.forEach(([n, l], i) => {
