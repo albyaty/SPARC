@@ -68,6 +68,30 @@
     });
   }
 
+  /* ---------- Theme ---------- */
+
+  const root = document.documentElement;
+  const currentTheme = () => (root.dataset.theme === "light" ? "light" : "dark");
+  const themeMeta = $('meta[name="theme-color"]');
+  const applyTheme = (theme, save) => {
+    if (theme === "light") root.dataset.theme = "light";
+    else delete root.dataset.theme;
+    if (themeMeta) themeMeta.content = theme === "light" ? "#fcfcfa" : "#070b11";
+    $$(".theme-btn").forEach((b) => {
+      b.setAttribute("aria-pressed", String(theme === "light"));
+      b.setAttribute("aria-label", theme === "light" ? "Switch to dark mode" : "Switch to light mode");
+      b.title = b.getAttribute("aria-label");
+    });
+    if (save) {
+      try {
+        localStorage.setItem("sparc-theme", theme);
+      } catch (e) {}
+    }
+    document.dispatchEvent(new CustomEvent("sparc:theme"));
+  };
+  applyTheme(currentTheme(), false);
+  $$(".theme-btn").forEach((b) => b.addEventListener("click", () => applyTheme(currentTheme() === "light" ? "dark" : "light", true)));
+
   /* ---------- Visibility helper ---------- */
 
   const onVisible = (el, fn, opts = { threshold: 0.2 }) => {
@@ -169,6 +193,21 @@
 
   /* ---------- Dot map ---------- */
 
+  /* Map colors per theme. Each "rgb" value is used inside rgba(). */
+  const MAP_PALETTES = {
+    dark: {
+      dot: [200, 214, 228], heat: [87, 214, 247], dotA: 0.2, heatA: 0.55,
+      accent: "87,214,247", ripple: 0.55, arc: 0.13, particle: "150,232,252", active: "255,255,255",
+      host: "255,95,82", nodeFill: "#57d6f7", hostFill: "#ff5f52", activeFill: "#ffffff", glow: 0.45,
+      ring: "rgba(255,255,255,0.7)", labelBg: "rgba(7,11,17,0.82)", labelFg: "rgba(255,255,255,0.85)",
+    },
+    light: {
+      dot: [52, 74, 98], heat: [11, 126, 166], dotA: 0.22, heatA: 0.5,
+      accent: "11,126,166", ripple: 0.45, arc: 0.18, particle: "11,126,166", active: "10,15,22",
+      host: "229,72,77", nodeFill: "#0b7ea6", hostFill: "#e5484d", activeFill: "#0a0f16", glow: 0.3,
+      ring: "rgba(10,15,22,0.6)", labelBg: "rgba(255,255,255,0.94)", labelFg: "rgba(10,15,22,0.85)",
+    },
+  };
   class DotMap {
     constructor(el, opts = {}) {
       this.el = el;
@@ -190,6 +229,11 @@
       this.resize();
       this.bind();
       new ResizeObserver(() => this.resize()).observe(el);
+      document.addEventListener("sparc:theme", () => {
+        if (!this.static) return;
+        this.renderStatic();
+        this.draw(performance.now());
+      });
       this.visible = false;
       if ("IntersectionObserver" in window) {
         new IntersectionObserver((en) => {
@@ -313,12 +357,13 @@
       const g = c.getContext("2d");
       g.scale(this.dpr, this.dpr);
       const r = Math.max(0.8, this.M.spacing * 0.15 * this.s);
+      const P = (this.P = MAP_PALETTES[currentTheme()]);
       this.dots.forEach((d) => {
-        const a = 0.2 + d.heat * 0.55;
+        const a = P.dotA + d.heat * P.heatA;
         const mix = d.heat;
-        const R = Math.round(200 + (87 - 200) * mix);
-        const G = Math.round(214 + (214 - 214) * mix);
-        const B = Math.round(228 + (247 - 228) * mix);
+        const R = Math.round(P.dot[0] + (P.heat[0] - P.dot[0]) * mix);
+        const G = Math.round(P.dot[1] + (P.heat[1] - P.dot[1]) * mix);
+        const B = Math.round(P.dot[2] + (P.heat[2] - P.dot[2]) * mix);
         g.fillStyle = `rgba(${R},${G},${B},${a})`;
         g.beginPath();
         g.arc(this.X(d.x), this.Y(d.y), r * (1 + d.heat * 0.35), 0, Math.PI * 2);
@@ -345,11 +390,12 @@
       g.drawImage(this.static, 0, 0);
       g.scale(this.dpr, this.dpr);
       const sec = t / 1000;
+      const P = this.P;
 
       // inward ripple: a wave of light converging on the coordinating center
       if (this.o.ripple && !reduce) {
-        const P = 6.5;
-        const p = (sec % P) / P;
+        const period = 6.5;
+        const p = (sec % period) / period;
         const rad = this.maxDist * (1 - p);
         const band = 16;
         const lo = this.lower(rad - band);
@@ -358,7 +404,7 @@
           const d = this.byDist[i];
           if (d.dh > rad + band) break;
           const k = 1 - Math.abs(d.dh - rad) / band;
-          g.fillStyle = `rgba(87,214,247,${0.55 * k * fade})`;
+          g.fillStyle = `rgba(${P.accent},${P.ripple * k * fade})`;
           g.beginPath();
           g.arc(this.X(d.x), this.Y(d.y), this.dotR * 1.25, 0, Math.PI * 2);
           g.fill();
@@ -369,7 +415,7 @@
       this.arcs.forEach((a, i) => {
         if (!a || !this.inRegion(i)) return;
         const on = i === this.active;
-        g.strokeStyle = on ? "rgba(87,214,247,0.85)" : "rgba(87,214,247,0.13)";
+        g.strokeStyle = `rgba(${P.accent},${on ? 0.85 : P.arc})`;
         g.lineWidth = on ? 1.6 : 1;
         g.beginPath();
         g.moveTo(this.X(a.x0), this.Y(a.y0));
@@ -388,7 +434,7 @@
             const tt = head - k * 0.012;
             if (tt < 0) break;
             const [x, y] = this.bezier(a, tt);
-            g.fillStyle = `rgba(${on ? "255,255,255" : "150,232,252"},${(1 - k / 10) * (on ? 1 : 0.8)})`;
+            g.fillStyle = `rgba(${on ? P.active : P.particle},${(1 - k / 10) * (on ? 1 : 0.8)})`;
             g.beginPath();
             g.arc(this.X(x), this.Y(y), (k === 0 ? 1.9 : 1.3) * Math.max(0.8, this.s), 0, Math.PI * 2);
             g.fill();
@@ -403,24 +449,24 @@
         const host = i === this.host;
         const on = i === this.active;
         const dim = !this.inRegion(i);
-        const base = host ? "255,95,82" : "87,214,247";
+        const base = host ? P.host : P.accent;
         const glowR = (host ? 22 : on ? 16 : 11) * Math.max(0.75, this.s);
         const grad = g.createRadialGradient(X, Y, 0, X, Y, glowR);
-        grad.addColorStop(0, `rgba(${base},${dim ? 0.08 : 0.45})`);
+        grad.addColorStop(0, `rgba(${base},${dim ? 0.08 : P.glow})`);
         grad.addColorStop(1, `rgba(${base},0)`);
         g.fillStyle = grad;
         g.beginPath();
         g.arc(X, Y, glowR, 0, Math.PI * 2);
         g.fill();
         const core = (host ? 5 : on ? 4.6 : 3.4) * Math.max(0.8, this.s);
-        g.fillStyle = dim ? `rgba(${base},0.3)` : host ? "#ff5f52" : on ? "#ffffff" : "#57d6f7";
+        g.fillStyle = dim ? `rgba(${base},0.3)` : host ? P.hostFill : on ? P.activeFill : P.nodeFill;
         g.beginPath();
         g.arc(X, Y, core, 0, Math.PI * 2);
         g.fill();
         if (host && !reduce) {
           for (let k = 0; k < 2; k++) {
             const p = ((sec / 2.4 + k / 2) % 1);
-            g.strokeStyle = `rgba(255,95,82,${0.6 * (1 - p)})`;
+            g.strokeStyle = `rgba(${P.host},${0.6 * (1 - p)})`;
             g.lineWidth = 1.2;
             g.beginPath();
             g.arc(X, Y, core + p * 26 * Math.max(0.8, this.s), 0, Math.PI * 2);
@@ -428,7 +474,7 @@
           }
         }
         if (on && !host) {
-          g.strokeStyle = "rgba(255,255,255,0.7)";
+          g.strokeStyle = P.ring;
           g.lineWidth = 1;
           g.beginPath();
           g.arc(X, Y, core + 5, 0, Math.PI * 2);
@@ -448,18 +494,18 @@
         const Y = this.Y(hy);
         const bx = X + 14;
         const by = Y - 30 - fs * 2.6;
-        g.strokeStyle = "rgba(255,95,82,0.5)";
+        g.strokeStyle = `rgba(${P.host},0.5)`;
         g.lineWidth = 1;
         g.beginPath();
         g.moveTo(X + 4, Y - 4);
         g.lineTo(bx, by + fs * 2.6);
         g.stroke();
-        g.fillStyle = "rgba(7,11,17,0.82)";
+        g.fillStyle = P.labelBg;
         g.fillRect(bx, by, tw + 16, fs * 2.6 + 6);
         g.textBaseline = "top";
-        g.fillStyle = "rgba(255,255,255,0.85)";
+        g.fillStyle = P.labelFg;
         g.fillText(l1, bx + 8, by + 5);
-        g.fillStyle = "rgba(255,95,82,0.95)";
+        g.fillStyle = `rgba(${P.host},0.95)`;
         g.fillText(l2, bx + 8, by + 5 + fs * 1.3);
       }
     }
