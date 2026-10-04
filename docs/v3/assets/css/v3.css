@@ -3646,3 +3646,91 @@ h3 em,
   font-size: clamp(3rem, 5.2vw, 5.4rem);
   line-height: 0.95;
 }
+
+/* ---------- Organizing team ---------- */
+
+.crew {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crew li {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  background: var(--paper-2);
+  border: 1px solid var(--line-l);
+  border-radius: 16px;
+}
+
+.crew img,
+.crew .ini {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.crew .ini {
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: #ebe8e1;
+}
+
+.crew b {
+  display: block;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.crew span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+}
+
+/* ---------- Footer credit ---------- */
+
+.foot-bottom .credit {
+  color: var(--fg-2);
+}
+
+.foot-bottom .credit a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+  text-underline-offset: 3px;
+}
+
+.foot-bottom .credit a:hover {
+  text-decoration-color: var(--cyan);
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+}
+
+.foot-bottom .credit a,
+.crew b {
+  white-space: nowrap;
+}
+
+.crew b {
+  white-space: normal;
+}
+
+.crew b .nb {
+  white-space: nowrap;
+}
