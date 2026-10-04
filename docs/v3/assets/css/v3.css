@@ -3717,9 +3717,20 @@ h3 em,
   text-decoration-color: var(--cyan);
 }
 
+.brand {
+  gap: 14px;
+}
+
 .brand img {
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
+}
+
+@media (max-width: 520px) {
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .foot-bottom .credit a,
@@ -3733,4 +3744,92 @@ h3 em,
 
 .crew b .nb {
   white-space: nowrap;
+}
+
+/* ---------- Contact card ---------- */
+
+.contact {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 6px 18px;
+  align-items: center;
+  max-width: 640px;
+  padding: 16px 18px 16px 16px;
+  background: rgba(11, 17, 26, 0.75);
+  border: 1px solid var(--line-d2);
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.contact img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px rgba(87, 214, 247, 0.18);
+}
+
+.contact .mono {
+  display: block;
+  color: var(--cyan);
+}
+
+.contact b {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.contact div > span:last-child {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.88rem;
+  color: var(--fg-2);
+}
+
+.light .contact {
+  background: var(--paper-2);
+  border-color: var(--line-l);
+}
+
+.light .contact .mono {
+  color: var(--teal);
+}
+
+.light .contact b {
+  color: var(--ink);
+}
+
+.light .contact div > span:last-child {
+  color: var(--ink-3);
+}
+
+.light .contact .btn-cyan {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.join-acts {
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .contact {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .contact img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .contact .btn {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+  }
 }

@@ -6,8 +6,8 @@
  */
 window.SPARC = {
   contact: {
-    name: "Nicolas A. Soputro, MD",
-    email: "soputrn@ccf.org",
+    name: "Abdulrahman Al-Bayati, MD",
+    email: "ala22@ccf.org",
   },
 
   links: {
