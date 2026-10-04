@@ -3978,3 +3978,28 @@ h3 em,
 :root[data-theme="light"] .sites {
   scrollbar-color: rgba(10, 15, 22, 0.2) transparent;
 }
+
+/* The hero map sits under the (click-through) hero text; keep it interactive. */
+.hero .hero-map {
+  pointer-events: auto;
+}
+
+.map-hint .hint-tap,
+.net-legend .hint-tap {
+  display: none;
+}
+
+@media (hover: none) {
+  .map-hint .hint-hover {
+    display: none;
+  }
+
+  .map-hint .hint-tap {
+    display: inline;
+  }
+
+  .net-legend .hint-tap {
+    display: inline-flex;
+    color: var(--cyan);
+  }
+}

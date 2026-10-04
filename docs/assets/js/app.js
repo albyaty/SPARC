@@ -535,9 +535,9 @@
       this.raf = requestAnimationFrame(loop);
     }
 
-    hit(px, py) {
+    hit(px, py, radius = 18) {
       let best = -1;
-      let bd = 18;
+      let bd = radius;
       this.pts.forEach(([x, y], i) => {
         if (!this.inRegion(i)) return;
         const d = Math.hypot(this.X(x) - px, this.Y(y) - py);
@@ -577,26 +577,41 @@
         const r = this.canvas.getBoundingClientRect();
         return [e.clientX - r.left, e.clientY - r.top];
       };
+      // Mouse: hover shows the name.
       this.canvas.addEventListener("pointermove", (e) => {
-        if (e.pointerType === "touch") return;
+        if (e.pointerType !== "mouse") return;
         const i = this.hit(...pos(e));
         this.canvas.style.cursor = i >= 0 ? "pointer" : "default";
         if (i !== this.active) this.setActive(i);
       });
-      this.canvas.addEventListener("pointerleave", () => this.setActive(-1));
-      this.canvas.addEventListener("pointerdown", (e) => {
-        if (e.pointerType !== "touch") return;
-        const i = this.hit(...pos(e));
+      this.canvas.addEventListener("pointerleave", (e) => {
+        if (e.pointerType === "mouse") this.setActive(-1);
+      });
+      // Touch and pen: tap a dot to show its name, tap it again (or elsewhere) to hide.
+      this.canvas.addEventListener("pointerup", (e) => {
+        if (e.pointerType === "mouse") return;
+        const i = this.hit(...pos(e), 28);
         this.setActive(i === this.active ? -1 : i);
       });
+      document.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "mouse" || this.active < 0) return;
+        if (e.target === this.canvas || (this.o.list && this.o.list.contains(e.target))) return;
+        this.setActive(-1);
+      });
       if (this.o.list) {
+        const small = window.matchMedia("(max-width: 1000px)");
+        const canHover = window.matchMedia("(hover: hover)");
         $$("[data-i]", this.o.list).forEach((li) => {
           const i = Number(li.dataset.i);
-          li.addEventListener("mouseenter", () => this.setActive(i));
-          li.addEventListener("mouseleave", () => this.setActive(-1));
+          li.addEventListener("mouseenter", () => canHover.matches && this.setActive(i));
+          li.addEventListener("mouseleave", () => canHover.matches && this.setActive(-1));
           li.addEventListener("focus", () => this.setActive(i));
-          li.addEventListener("blur", () => this.setActive(-1));
-          li.addEventListener("click", () => this.setActive(i));
+          li.addEventListener("blur", () => canHover.matches && this.setActive(-1));
+          li.addEventListener("click", () => {
+            this.setActive(i);
+            // On phones the list sits below the map, so bring the map into view.
+            if (small.matches) this.el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+          });
         });
       }
     }
